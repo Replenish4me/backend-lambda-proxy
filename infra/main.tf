@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "my_function" {
   filename      = "../app.zip"
   function_name = "${var.function_name}-${var.env}"
-  role          = "arn:aws:iam::aws:role/my-lambda-role"
+  role          = aws_iam_role.my_role.arn
   handler       = "app.handler.lambda_handler"
   runtime       = "python3.9"
 
@@ -12,7 +12,11 @@ resource "aws_lambda_function" "my_function" {
   }
 }
 
+resource "aws_iam_role" "my_role" {
+  name = "my-lambda-role"
+}
+
 resource "aws_iam_role_policy_attachment" "my_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  role       = "my-lambda-role"
+  role       = aws_iam_role.my_role.name
 }

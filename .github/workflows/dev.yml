@@ -26,29 +26,27 @@ jobs:
     - name: Zipping function
       run: zip app.zip app/
 
-    - name: Go to infra directory
-      run: cd infra
 
     - name: Terraform Init
-      run: terraform init
+      run: cd infra && terraform init
 
     - name: Terraform select Workspace
-      run: terraform workspace new ${{ env.ENVIRONMENT }} || terraform workspace select ${{ env.ENVIRONMENT }}
+      run: cd infra && terraform workspace new ${{ env.ENVIRONMENT }} || terraform workspace select ${{ env.ENVIRONMENT }}
       continue-on-error: true
       env:
         ENVIRONMENT: dev
 
     - name: Terraform Validate
-      run: terraform validate
+      run: cd infra && terraform validate
       env:
         ENVIRONMENT: dev
 
     - name: Terraform Plan
-      run: terraform plan -var-file="./${{ env.ENVIRONMENT }}/env.tfvars"
+      run: cd infra && terraform plan -var-file="./${{ env.ENVIRONMENT }}/env.tfvars"
       env:
         ENVIRONMENT: dev
 
     - name: Terraform Apply
-      run: terraform apply -var-file="./${{ env.ENVIRONMENT }}/env.tfvars" -auto-approve
+      run: cd infra && terraform apply -var-file="./${{ env.ENVIRONMENT }}/env.tfvars" -auto-approve
       env:
         ENVIRONMENT: dev

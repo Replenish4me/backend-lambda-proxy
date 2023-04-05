@@ -23,7 +23,7 @@ obs:
         aws-region: us-east-1
 
     - name: Zipping function
-      run: zip app.zip app/
+      run: zip -r app.zip app/
 
 
     - name: Terraform Init

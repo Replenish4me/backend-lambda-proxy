@@ -24,8 +24,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Zipping function
-      run: zip app.zip app/
-
+      run: zip app.zip -u app/
 
     - name: Terraform Init
       run: cd infra && terraform init

@@ -6,7 +6,8 @@ event = {
     },
     'body': {
         'name': 'John Doe'
-    }
+    },
+    'path': '/create-user',
 }
 
 context = {}

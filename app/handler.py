@@ -14,6 +14,11 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
     if requires_auth:
         """TODO: Implement authentication"""
     
+    print(f'Event: {event}')
+    print(f'Request body: {req_body}')
+    print(f'Query params: {query_params}')
+    print(f'Request headers: {req_headers}')
+
     response = call_lambda(function_name, event)
     
     return response

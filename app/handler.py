@@ -71,6 +71,7 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
 
     # Adiciona o header de CORS
     response['headers']['Access-Control-Allow-Origin'] = '*'
+    response['headers']['Access-Control-Allow-Methods'] = '*'
+    response['headers']['Access-Control-Allow-Headers'] = '*'
     response['headers']['Content-Type'] = 'application/json'
-    
     return response

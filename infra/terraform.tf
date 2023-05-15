@@ -1,5 +1,4 @@
 provider "aws" {
-  alias = "cloudfront-acm-certs"
   region = "${var.region}"
 }
 

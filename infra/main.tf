@@ -29,6 +29,14 @@ resource "aws_iam_role" "my_role" {
   })
 }
 
+resource "aws_lambda_permission" "api_gateway_permission" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.my_function.arn
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*"
+}
+
 resource "aws_iam_role_policy_attachment" "my_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   role       = aws_iam_role.my_role.name

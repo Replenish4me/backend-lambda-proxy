@@ -1,4 +1,5 @@
 import os
+import json
 from typing import Dict, Any
 from .routes import routes
 from .caller import call_lambda
@@ -8,6 +9,9 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
     query_params = event.get('queryStringParameters') or {}
     req_headers = event.get('headers') or {}
     path = event.get('path') or '/'
+
+    if isinstance(req_body, str):
+        req_body = json.loads(req_body)
 
     function_name : str = routes.get(path, {})['function_name']
     requires_auth : bool = routes.get(path, {})['requires_auth']

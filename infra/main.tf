@@ -19,7 +19,7 @@ resource "aws_lambda_function" "my_function" {
 }
 
 resource "aws_iam_role" "my_role" {
-  name = "my-lambda-role"
+  name = "lambda-proxy-role-${var.env}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

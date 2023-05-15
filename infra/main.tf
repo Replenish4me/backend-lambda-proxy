@@ -58,16 +58,16 @@ resource "aws_iam_role_policy_attachment" "secrets_manager_policy_attachment" {
   role       = aws_iam_role.my_role.id
 }
 
-resource "aws_iam_policy" "describe_database_policy" {
-  name        = "${var.function_name}-describe-database-policy-${var.env}"
-  description = "Policy to allow access to Describe Database"
+resource "aws_iam_policy" "invoke_lambda_policy" {
+  name        = "${var.function_name}-invoke-lambda-policy-${var.env}"
+  description = "Policy to allow access to Invoke Lambda"
   policy      = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
         Effect = "Allow",
         Action = [
-          "rds:Describe*"
+          "lambda:InvokeFunction"
         ],
         Resource = "*"
       }
@@ -75,7 +75,7 @@ resource "aws_iam_policy" "describe_database_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "describe_database_policy_attachment" {
-  policy_arn = aws_iam_policy.describe_database_policy.arn
+resource "aws_iam_role_policy_attachment" "invoke_lambda_policy_attachment" {
+  policy_arn = aws_iam_policy.invoke_lambda_policy.arn
   role       = aws_iam_role.my_role.id
 }

@@ -10,6 +10,12 @@ resource "aws_lambda_function" "my_function" {
   lifecycle {
     create_before_destroy = true
   }
+
+  environment {
+    variables = {
+      env = var.env
+    }
+  }
 }
 
 resource "aws_iam_role" "my_role" {

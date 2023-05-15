@@ -1,7 +1,5 @@
 import os
 
-from . import mocked
-
 routes = {
     '/signup': {
         'function_name': f'create-user-{os.environ.get("env", "dev")}',

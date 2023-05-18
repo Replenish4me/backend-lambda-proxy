@@ -11,4 +11,13 @@ routes = {
         'requires_auth': False,
         'required_params': ['email', 'senha'],
     },
+    '/cart': {
+        'versions': {
+            'v1': {
+                'function_name': f'cart-{os.environ.get("env", "dev")}',
+            }
+        },
+        'requires_auth': True,
+        'required_params': [],
+    }
 }

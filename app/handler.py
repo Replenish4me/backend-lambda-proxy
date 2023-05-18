@@ -10,15 +10,17 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
     query_params = event.get('queryStringParameters') or {}
     req_headers = event.get('headers') or {}
     path = event.get('path') or '/'
+    version = query_params.get('version', 'v1')
     
     logging.info(f'Path: {path}')
+
 
     if isinstance(req_body, str):
         req_body = json.loads(req_body)
 
-    function_name : str = routes.get(path, {})['function_name']
-    requires_auth : bool = routes.get(path, {})['requires_auth']
-    required_params : list = routes.get(path, {})['required_params']
+    function_name : str = routes.get(path).get('versions').get(version)['function_name']
+    requires_auth : bool = routes.get(path)['requires_auth']
+    required_params : list = routes.get(path)['required_params']
 
     # Verifica se todos os parâmetros obrigatórios estão presentes
     for param in required_params:

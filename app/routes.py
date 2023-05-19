@@ -11,7 +11,7 @@ routes = {
         'required_params': ['email', 'senha', 'endereco', 'nome', 'telefone'],
     },
     '/login': {
-        'version': {
+        'versions': {
             'v1': {
                 'function_name': f'login-{os.environ.get("env", "dev")}',
             }

@@ -2,7 +2,7 @@ from .handler import lambda_handler
 
 event = {
     "resource": "/{proxy+}",
-    "path": "/login",
+    "path": "/cart",
     "httpMethod": "POST",
     "headers": None,
     "multiValueHeaders": None,

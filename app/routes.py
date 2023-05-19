@@ -22,7 +22,7 @@ routes = {
     '/cart': {
         'versions': {
             'v1': {
-                'function_name': f'cart-{os.environ.get("env", "dev")}',
+                'function_name': f'get-cart-{os.environ.get("env", "dev")}',
             }
         },
         'requires_auth': True,

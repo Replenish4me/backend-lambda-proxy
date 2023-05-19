@@ -4,7 +4,9 @@ event = {
     "resource": "/{proxy+}",
     "path": "/cart",
     "httpMethod": "POST",
-    "headers": None,
+    "headers": {
+        'Authorization': '14aafb20-88e5-4db9-98dc-9d91d58f77fc'
+    },
     "multiValueHeaders": None,
     "queryStringParameters": None,
     "multiValueQueryStringParameters": None,

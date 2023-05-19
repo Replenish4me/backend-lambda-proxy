@@ -14,8 +14,6 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
     
     logging.info(f'Path: {path}')
 
-    print(routes.get(path))
-
     if isinstance(req_body, str):
         req_body = json.loads(req_body)
 
@@ -51,6 +49,8 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
 
         if response.get('statusCode') != 200:
             return response
+
+    req_body['token'] = req_headers.get('Authorization', '')
 
     # Invoca a função lambda com os dados em um json não aninhado
     response = call_lambda(

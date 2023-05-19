@@ -5,6 +5,7 @@ import boto3
 
 def call_lambda(name: str, payload: Dict[str, Any]) -> Dict[str, Any]:
     """Call a lambda function and return its response."""
+    print(payload)
     client = boto3.client('lambda')
     print(payload)
     response = client.invoke(

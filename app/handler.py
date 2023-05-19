@@ -14,6 +14,7 @@ def lambda_handler(event: Dict[str, Dict[str, Any]], context: Dict[str, Any]):
     
     logging.info(f'Path: {path}')
 
+    print(routes.get(path))
 
     if isinstance(req_body, str):
         req_body = json.loads(req_body)

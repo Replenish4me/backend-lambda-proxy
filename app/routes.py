@@ -34,7 +34,7 @@ routes = {
                 'function_name': f'add-to-cart-{os.environ.get("env", "dev")}',
             }
         },
-        'requires_auth': True,
+        'requires_auth': False,
         'required_params': ['produto_id', 'quantidade'],
     },
     '/remove-one-unity': {
